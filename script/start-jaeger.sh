@@ -8,7 +8,7 @@ if test -f "pids/jaeger.pid"; then
 fi
 
 mkdir -p logs
-jaeger-all-in-one 2>logs/jaeger.log &
+jaeger-all-in-one --collector.zipkin.host-port :9999 2>logs/jaeger.log &
 pid="$!"
 
 mkdir -p pids
