@@ -1,10 +1,15 @@
+* running
 
+#+BEGIN_SRC
 
-src
+nix-shell             # brings dependencies in PATH
+make start.services   # starts tracing services
+make pulumi.up        # runs pulumi against tracing services
+make stop.services    # stops tracing services
 
-  pulumi-project/
-    # example pulumi project
+# browse Jaeger UI at http://localhost:16686/
 
+#+END_SRC
 
 
 * processes
