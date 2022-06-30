@@ -1,0 +1,17 @@
+
+
+src
+
+  pulumi-project/
+    # example pulumi project
+
+
+
+* processes
+
+
+#+BEGIN_SRC
+  pulumi --> otelcol  --> jaeger
+                 \------> prometheus
+
+#+END_SRC
