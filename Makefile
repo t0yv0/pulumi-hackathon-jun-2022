@@ -1,10 +1,14 @@
+start.services:: start.jaeger start.otelcol
+stop.services:: stop.jaeger stop.otelcol
+
 start.jaeger::
 	./script/start-jaeger.sh
 
-stop.jaeger:
+start.otelcol::
+	./script/start-otelcol.sh
+
+stop.jaeger::
 	./script/stop-jaeger.sh
 
-# start-jaeger:
-
-# start:otelcol::
-# 	otelcol --help
+stop.otelcol::
+	./script/stop-otelcol.sh

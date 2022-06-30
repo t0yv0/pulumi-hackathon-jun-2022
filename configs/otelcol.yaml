@@ -1,0 +1,60 @@
+receivers:
+  jaeger:
+    protocols:
+      grpc:     # 14250 already in use
+        endpoint: "localhost:14251"
+
+      # thrift_binary:  # 6832 already in use
+      # thrift_compact:
+      # thrift_http:
+
+# processors:
+#   batch:
+
+exporters:
+  zipkin:
+    endpoint: "http://localhost:9411/api/v2/spans"
+
+  # otlphttp:
+  #   endpoint: https://localhost:???/v1/traces
+
+
+# 5775	UDP	agent	accept zipkin.thrift over compact thrift protocol
+# 6831	UDP	agent	accept jaeger.thrift over compact thrift protocol
+# 6832	UDP	agent	accept jaeger.thrift over binary thrift protocol
+# 5778	HTTP	agent	serve configs
+# 16686	HTTP	query	serve frontend
+# 14268	HTTP	collector	accept jaeger.thrift directly from clients
+# 9411	HTTP	collector	Zipkin compatible endpoint
+
+
+  # # Data sources: traces
+  # jaeger:
+  #   endpoint: "localhost:14251"
+
+  #   # endpoint: "localhost:14250"
+  #   # endpoint: "localhost:14250"
+  #   tls:
+  #      cert_file: ""
+  #      key_file: ""
+
+# extensions:
+#   health_check:
+#   pprof:
+#   zpages:
+
+service:
+  # extensions: [health_check,pprof,zpages]
+  pipelines:
+    traces:
+      receivers: [jaeger]
+      processors: []
+      exporters: [zipkin]
+    # metrics:
+    #   receivers: [otlp]
+    #   processors: [batch]
+    #   exporters: [otlp]
+    # logs:
+    #   receivers: [otlp]
+    #   processors: [batch]
+    #   exporters: [otlp]
