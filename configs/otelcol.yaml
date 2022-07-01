@@ -5,10 +5,13 @@ exporters:
   zipkin:
     endpoint: "http://localhost:9999/api/v2/spans"
 
+  file:
+    path: ./logs/trace.json
+
 service:
   # extensions: [health_check,pprof,zpages]
   pipelines:
     traces:
       receivers: [zipkin]
       processors: []
-      exporters: [zipkin]
+      exporters: [zipkin, file]
