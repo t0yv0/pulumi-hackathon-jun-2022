@@ -19,5 +19,7 @@ pkgs.mkShell {
   buildInputs = [
     deps.jaeger
     deps.opentelemetry-collector
+
+    pkgs.prometheus
   ];
 }
